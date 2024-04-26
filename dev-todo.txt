@@ -1,0 +1,4 @@
+memeAgent/src/utils/contractInstance.js 
+Replace contract address and ABI
+
+Contact Event handler and save to mongodb
