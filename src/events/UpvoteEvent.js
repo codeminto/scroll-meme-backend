@@ -1,5 +1,5 @@
 const { ContestContractInstance } = require('../utils/contractInstance.js');
-const { getUpvote, addNewUpvote } = require('../services/upvote.service.js')
+const { getUpvote, addNewUpvote, getUpvoteByQuery } = require('../services/upvote.service.js')
 const mapEventData = (event) => {
     try {
         const result = {};
@@ -21,11 +21,9 @@ const UpvoteEventListener = async () => {
             if (error) {
                 throw error;
             }
-            console.log("UPVOTE 1:", event)
             const mappedContestData = mapEventData(event)
-            console.log("UPVOTE 2:", event)
             try {
-                const contest = await getUpvote({ winner: mappedContestData?.winner, contractAddress: mappedContestData?.contractAddress })
+                const contest = await getUpvoteByQuery({ voter: mappedContestData?.voter, contractAddress: mappedContestData?.contractAddress })
                 if (!contest) {
                     await addNewUpvote(mappedContestData)
                 }

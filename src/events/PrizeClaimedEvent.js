@@ -21,9 +21,7 @@ const PrizeClaimedEventListener = async () => {
             if (error) {
                 throw error;
             }
-            console.log("UPVOTE 1:", event)
             const mappedContestData = mapEventData(event)
-            console.log("UPVOTE 2:", event)
             try {
                 const contest = await getPrizeClaimedByQuery({ winner: mappedContestData?.winner, contractAddress: mappedContestData?.contractAddress })
                 if (!contest) {

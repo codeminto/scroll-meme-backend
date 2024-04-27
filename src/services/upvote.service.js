@@ -1,6 +1,6 @@
 // Contest Service
 
-const Upvote = require("../models/prize-claimed.model");
+const Upvote = require("../models/upvote.model");
 
 async function getUpvote() {
     return (await Upvote.find().lean());

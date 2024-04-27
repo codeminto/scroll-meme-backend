@@ -57,7 +57,6 @@ async function downloadContest(memeId) {
 }
 
 async function addNewContest(payload) {
-    console.log(payload);
     // Create a new Contest instance
     const newContest = new Contest(payload);
 

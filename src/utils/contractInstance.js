@@ -1,6 +1,6 @@
 const { ethereumConnectionInstance } = require("./web3.js")
-const ADDRESS = '0xCa6980D554CDf28e7be92e1d39627357E4BBC15A'//scroll sepolia
-// const ADDRESS = '0xDE919C2c586015f93dbDa5c2852E6e84E58fe8D4'//arbitrum sepolia
+// const ADDRESS = '0xCa6980D554CDf28e7be92e1d39627357E4BBC15A'//scroll sepolia
+const ADDRESS = '0xDE919C2c586015f93dbDa5c2852E6e84E58fe8D4'//arbitrum sepolia
 
 
 
@@ -890,9 +890,9 @@ const contractAB = [
 	}
 ]
 const ContestContractInstance = async () => {
-    const web3 = await ethereumConnectionInstance;
-    let vaultContract = await new web3.eth.Contract(contractAB, ADDRESS)
-    return vaultContract
+	const web3 = await ethereumConnectionInstance;
+	let vaultContract = await new web3.eth.Contract(contractAB, ADDRESS)
+	return vaultContract
 }
 
 module.exports = { ContestContractInstance }
