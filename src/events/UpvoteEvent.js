@@ -17,14 +17,14 @@ const mapEventData = (event) => {
 const UpvoteEventListener = async () => {
     try {
         let contract = await ContestContractInstance();
-        await contract.events.Upvoted({ fromBlock: 0 + 1, }, async function (error, event) {
+        await contract.events.Upvoted({ fromBlock: 28963744, }, async function (error, event) {
             if (error) {
                 throw error;
             }
             const mappedContestData = mapEventData(event)
             try {
-                const contest = await getUpvoteByQuery({ voter: mappedContestData?.voter, contractAddress: mappedContestData?.contractAddress })
-                if (!contest) {
+                const contest = await getUpvoteByQuery({ voter: mappedContestData?.voter, contractAddress: mappedContestData?.contractAddress });
+                if (!contest || !contest?.length) {
                     await addNewUpvote(mappedContestData)
                 }
             } catch (error) {

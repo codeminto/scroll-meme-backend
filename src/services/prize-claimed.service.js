@@ -19,7 +19,6 @@ async function getPrizeClaimedByQuery(query) {
 
 
 async function addNewPrizeClaimed(payload) {
-    console.log(payload);
     // Create a new Contest instance
     const newContest = new PrizeClaimed(payload);
 

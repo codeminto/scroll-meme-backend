@@ -32,11 +32,9 @@ const updateMemeDownload = async (req, res) => {
 };
 
 const createMeme = async (req, res) => {
-// @todo
-console.log(req.params,"req");
-
-const newDownloads = await memeService.addNewMeme(req.body.title,req.body.userId,req.body.imagelink,[]);
-res.send(newDownloads);
+  // @todo
+  const newDownloads = await memeService.addNewMeme(req.body.title, req.body.userId, req.body.imagelink, []);
+  res.send(newDownloads);
 
 };
 

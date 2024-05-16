@@ -26,13 +26,14 @@ app.use("/meme", require("./routes/meme.route"));
 app.use("/auth", require("./routes/auth.route"));
 app.use("/tableland", require("./routes/tableland.route"));
 app.use("/contest-submission", require("./routes/contest-submission.route"));
+app.use("/contest", require("./routes/contest.route"));
 
 // Event listener 
 const { CreateContestEventListener } = require('./events/CreateContestEvent');
 const { ContestSubmissionEventListener } = require('./events/ContestSubmissionEvent');
-const { PrizeClaimedEventListener } = require('./events/PrizeClaimedEvent');
+const { PrizeClaimedEventListener } = require('./events/WinnerClaimedEvent');
 const { UpvoteEventListener } = require('./events/UpvoteEvent');
-const { WinnersCalculatedEventListener } = require('./events/WinnersCalculatedEvent');
+const { WinnersCalculatedEventListener } = require('./events/WinnersAnnouncedEvent');
 CreateContestEventListener();
 ContestSubmissionEventListener();
 PrizeClaimedEventListener();
