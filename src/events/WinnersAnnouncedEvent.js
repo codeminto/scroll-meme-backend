@@ -1,9 +1,10 @@
 const { ContestContractInstance } = require('../utils/contractInstance.js');
-const { getWinnerCalculatedByQuery, addNewWinnersCalculated } = require('../services/winners-calculated.service.js')
+const { getWinnerAnnouncedByQuery, addNewWinnerAnnounced } = require('../services/winners-announced.service.js')
 const mapEventData = (event) => {
     try {
         const result = {};
         const { returnValues, transactionHash, address } = event
+        result['payout'] = returnValues.payout;
         result['winningSubmissions'] = returnValues.winningSubmissions;
         result['contractAddress'] = returnValues.contractAddress;
         result['factoryContractAddress'] = address;
@@ -16,22 +17,22 @@ const mapEventData = (event) => {
 const WinnersCalculatedEventListener = async () => {
     try {
         let contract = await ContestContractInstance();
-        await contract.events.WinnersCalculated({ fromBlock: 0 + 1, }, async function (error, event) {
+        await contract.events.WinnerAnnounced({ fromBlock: 28963744, }, async function (error, event) {
             if (error) {
                 throw error;
             }
-            const mappedContestData = mapEventData(event)
+            const mappedWinnerAnnouncedData = mapEventData(event)
             try {
-                const contest = await getWinnerCalculatedByQuery({ contractAddress: mappedContestData?.contractAddress })
-                if (!contest) {
-                    await addNewWinnersCalculated(mappedContestData)
+                const winner = await getWinnerAnnouncedByQuery({ contractAddress: mappedWinnerAnnouncedData?.contractAddress })
+                if (!winner) {
+                    await addNewWinnerAnnounced(mappedWinnerAnnouncedData)
                 }
             } catch (error) {
-                console.log("ERROR_WHILE_ADDING_WINNERS_CALCULATED: ", error)
+                console.log("ERROR_WHILE_ADDING_WINNERS_ANNOUNCED: ", error)
             }
         })
     } catch (error) {
-        console.log('ERROR_WHILE_ADDING_WINNERS_CALCULATED_READING : ', error);
+        console.log('ERROR_WHILE_ADDING_WINNERS_ANNOUNCED_READING : ', error);
     }
 }
 

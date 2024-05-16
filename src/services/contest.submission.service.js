@@ -2,8 +2,8 @@
 
 const ContestSubmission = require("../models/contest-submission.model");
 
-async function getContestSubmissions() {
-    return (await ContestSubmission.find().lean());
+async function getContestSubmissions(query) {
+    return (await ContestSubmission.find(query).lean());
 }
 
 async function getContestSubmission(id) {
@@ -57,7 +57,6 @@ async function downloadContest(memeId) {
 }
 
 async function addNewContestSubmission(payload) {
-    console.log(payload);
     // Create a new Contest instance
     const newContest = new ContestSubmission(payload);
 

@@ -36,7 +36,7 @@ async function getTrendingMemes() {
 */
 async function searchMeme(searchValue) {
   const testReg = new RegExp(searchValue);
-  const meme = await Meme.find({title: testReg });
+  const meme = await Meme.find({ title: testReg });
   return meme;
 }
 
@@ -81,8 +81,7 @@ async function downloadMeme(memeId) {
  * @returns        The saved meme document
  */
 async function addNewMeme(title, userId, imagelink, categories = []) {
-   const categories1 = ["farcaster"];
-   console.log(title);
+  const categories1 = ["farcaster"];
   // Create a new Meme instance
   const newMeme = new Meme({
     title: title,

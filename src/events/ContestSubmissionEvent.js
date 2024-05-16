@@ -1,5 +1,5 @@
 const { ContestContractInstance } = require('../utils/contractInstance.js');
-const { getContestSubmissionByQuery, addNewContestSubmission } = require('../services/contestsubmission.service.js')
+const { getContestSubmissionByQuery, addNewContestSubmission } = require('../services/contest.submission.service.js')
 const mapEventData = (event) => {
     try {
         const result = {};
@@ -19,14 +19,11 @@ const mapEventData = (event) => {
 const ContestSubmissionEventListener = async () => {
     try {
         let contract = await ContestContractInstance();
-        await contract.events.SubmissionCreated({ fromBlock: 0 + 1, }, async function (error, event) {
+        await contract.events.SubmissionCreated({ fromBlock: 28963744, }, async function (error, event) {
             if (error) {
                 throw error;
             }
-            // console.log("CONTEST_SUBMISSION 1:", event)
             const mappedContestData = mapEventData(event)
-            // console.log("CONTEST_SUBMISSION 2:", mappedContestData)
-
             try {
                 const contest = await getContestSubmissionByQuery({ userId: mappedContestData?.userId, contractAddress: mappedContestData?.contractAddress })
                 if (!contest) {

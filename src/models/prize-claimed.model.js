@@ -13,6 +13,14 @@ const prizeClaimedSchema = new mongoose.Schema({
         type: String,
         default: null
     },
+    factoryContractAddress: {
+        type: String,
+        default: null
+    },
+    transactionHash: {
+        type: String,
+        default: null
+    },
     isActive: {
         type: Boolean,
         default: true

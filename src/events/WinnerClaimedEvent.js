@@ -17,14 +17,14 @@ const mapEventData = (event) => {
 const PrizeClaimedEventListener = async () => {
     try {
         let contract = await ContestContractInstance();
-        await contract.events.PrizeClaimed({ fromBlock: 0 + 1, }, async function (error, event) {
+        await contract.events.WinnerClaimed({ fromBlock: 28963744, }, async function (error, event) {
             if (error) {
                 throw error;
             }
             const mappedContestData = mapEventData(event)
             try {
-                const contest = await getPrizeClaimedByQuery({ winner: mappedContestData?.winner, contractAddress: mappedContestData?.contractAddress })
-                if (!contest) {
+                const prizeClaimed = await getPrizeClaimedByQuery({ winner: mappedContestData?.winner, contractAddress: mappedContestData?.contractAddress })
+                if (!prizeClaimed || !prizeClaimed?.length) {
                     await addNewPrizeClaimed(mappedContestData)
                 }
             } catch (error) {

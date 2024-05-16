@@ -24,16 +24,10 @@ const getTablelandUserMapping = async (req, res) => {
 
 const createTablelandUserMapping = async (req, res) => {
     try {
-        console.log(req.params, "req");
         const { networkId, address, tableName } = req.body;
         if (!networkId || !address || !tableName) {
             return res.status(400).json({ message: "Network/Address/Table is required!" })
         }
-        console.log('👉🏻 Line 32 : ', networkId);
-        console.log('👉🏻 Line 33 : ', address);
-        console.log('👉🏻 Line 34 : ', tableName);
-
-
         const newDownloads = await tablelandService.addTableland({ networkId, address, tableName });
         res.send(newDownloads);
     } catch (error) {

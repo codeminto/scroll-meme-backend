@@ -2,8 +2,8 @@
 
 const Contest = require("../models/contest.model");
 
-async function getContests() {
-    return (await Contest.find().lean());
+async function getContests(query = {}) {
+    return (await Contest.find(query).lean());
 }
 
 async function getContest(id) {

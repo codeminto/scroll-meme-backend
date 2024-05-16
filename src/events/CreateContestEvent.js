@@ -27,7 +27,7 @@ const mapEventData = (event) => {
 const CreateContestEventListener = async () => {
     try {
         let contract = await ContestContractInstance();
-        await contract.events.CampaignCreated({ fromBlock: 0 + 1, }, async function (error, event) {
+        await contract.events.CampaignCreated({ fromBlock: 28963744, }, async function (error, event) {
             if (error) {
                 throw error;
             }

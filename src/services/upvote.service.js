@@ -18,7 +18,6 @@ async function getUpvoteByQuery(query) {
 }
 
 async function addNewUpvote(payload) {
-    console.log(payload);
     // Create a new Contest instance
     const newContest = new Upvote(payload);
 
