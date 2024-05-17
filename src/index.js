@@ -27,6 +27,8 @@ app.use("/auth", require("./routes/auth.route"));
 app.use("/tableland", require("./routes/tableland.route"));
 app.use("/contest-submission", require("./routes/contest-submission.route"));
 app.use("/contest", require("./routes/contest.route"));
+app.use("/prize-claimed", require("./routes/prize-claimed.route"));
+app.use("/winners-announced", require("./routes/winners-announced.route"));
 
 // Event listener 
 const { CreateContestEventListener } = require('./events/CreateContestEvent');

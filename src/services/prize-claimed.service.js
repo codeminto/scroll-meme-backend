@@ -2,18 +2,18 @@
 
 const PrizeClaimed = require("../models/prize-claimed.model");
 
-async function getPrizeClaimed() {
-    return (await PrizeClaimed.find().lean());
+async function getPrizeClaimed(query = {}) {
+    return (await PrizeClaimed.find(query).lean());
 }
 
-async function getPrizeClaimed(id) {
+async function getPrizeClaimedById(id) {
     return (await PrizeClaimed.findById(id));
 }
 
 async function getPrizeClaimedByQuery(query) {
     return await PrizeClaimed.findOne(query);
 }
-async function getPrizeClaimedByQuery(query) {
+async function getPrizesClaimedByQuery(query) {
     return await PrizeClaimed.find(query);
 }
 
@@ -33,9 +33,10 @@ async function addNewPrizeClaimed(payload) {
 }
 
 module.exports = {
-    getPrizeClaimed,
     addNewPrizeClaimed, // Add this line to export your new function
     getPrizeClaimedByQuery,
     getPrizeClaimed,
-    getPrizeClaimedByQuery
+    getPrizeClaimedByQuery,
+    getPrizeClaimedById,
+    getPrizesClaimedByQuery
 };

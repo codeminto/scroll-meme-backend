@@ -1,7 +1,7 @@
 const WinnerAnnounced = require("../models/winners-announced.model");
 
-async function getWinnerAnnounced() {
-    return (await WinnerAnnounced.find().lean());
+async function getWinnerAnnounced(query = {}) {
+    return (await WinnerAnnounced.find(query).lean());
 }
 
 async function getWinnerAnnouncedById(id) {
