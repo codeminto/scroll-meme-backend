@@ -36,10 +36,10 @@ const { ContestSubmissionEventListener } = require('./events/ContestSubmissionEv
 const { PrizeClaimedEventListener } = require('./events/WinnerClaimedEvent');
 const { UpvoteEventListener } = require('./events/UpvoteEvent');
 const { WinnersCalculatedEventListener } = require('./events/WinnersAnnouncedEvent');
-CreateContestEventListener();
-ContestSubmissionEventListener();
-PrizeClaimedEventListener();
-UpvoteEventListener();
-WinnersCalculatedEventListener()
+// CreateContestEventListener();
+// ContestSubmissionEventListener();
+// PrizeClaimedEventListener();
+// UpvoteEventListener();
+// WinnersCalculatedEventListener()
 // start server
 app.listen(port, () => console.log(`[API] Server started on port - ${port}`));
