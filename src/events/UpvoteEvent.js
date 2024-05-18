@@ -17,7 +17,8 @@ const mapEventData = (event) => {
 const UpvoteEventListener = async () => {
     try {
         let contract = await ContestContractInstance();
-        await contract.events.Upvoted({ fromBlock: 28963744, }, async function (error, event) {
+        const fromBlock = contract.currentBlockNumber - 40000;
+        await contract.events.Upvoted({ fromBlock, }, async function (error, event) {
             if (error) {
                 throw error;
             }

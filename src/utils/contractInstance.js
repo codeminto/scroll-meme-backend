@@ -601,7 +601,9 @@ const ContestContractInstance = async () => {
 
 	let vaultContract
 	try {
+		var currentBlockNumber = await web3.eth.getBlockNumber();
 		vaultContract = await new web3.eth.Contract(contractAB, ADDRESS)
+		vaultContract.currentBlockNumber = currentBlockNumber
 	} catch (error) {
 		console.log('👉🏻 Line 499 : ', error);
 	}

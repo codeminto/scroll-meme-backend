@@ -29,17 +29,24 @@ app.use("/contest-submission", require("./routes/contest-submission.route"));
 app.use("/contest", require("./routes/contest.route"));
 app.use("/prize-claimed", require("./routes/prize-claimed.route"));
 app.use("/winners-announced", require("./routes/winners-announced.route"));
-
+app.get('/', async (request, response) => {
+    try {
+        const blockNumber = await CreateContestEventListener()
+        response.status(200).json({ blockNumber })
+    } catch (error) {
+        console.log('ERROR_IN_ROUTE', error);
+    }
+})
 // Event listener 
 const { CreateContestEventListener } = require('./events/CreateContestEvent');
 const { ContestSubmissionEventListener } = require('./events/ContestSubmissionEvent');
 const { PrizeClaimedEventListener } = require('./events/WinnerClaimedEvent');
 const { UpvoteEventListener } = require('./events/UpvoteEvent');
 const { WinnersCalculatedEventListener } = require('./events/WinnersAnnouncedEvent');
-// CreateContestEventListener();
-// ContestSubmissionEventListener();
-// PrizeClaimedEventListener();
-// UpvoteEventListener();
-// WinnersCalculatedEventListener()
+CreateContestEventListener();
+ContestSubmissionEventListener();
+PrizeClaimedEventListener();
+UpvoteEventListener();
+WinnersCalculatedEventListener()
 // start server
 app.listen(port, () => console.log(`[API] Server started on port - ${port}`));
