@@ -25,7 +25,7 @@ const PrizeClaimedEventListener = async () => {
             const mappedContestData = mapEventData(event)
             try {
                 const prizeClaimed = await getPrizeClaimedByQuery({ winner: mappedContestData?.winner, contractAddress: mappedContestData?.contractAddress })
-                if (!prizeClaimed || !prizeClaimed?.length) {
+                if (!prizeClaimed) {
                     await addNewPrizeClaimed(mappedContestData)
                 }
             } catch (error) {

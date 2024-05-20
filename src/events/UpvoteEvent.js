@@ -25,7 +25,7 @@ const UpvoteEventListener = async () => {
             const mappedContestData = mapEventData(event)
             try {
                 const contest = await getUpvoteByQuery({ voter: mappedContestData?.voter, contractAddress: mappedContestData?.contractAddress });
-                if (!contest || !contest?.length) {
+                if (!contest) {
                     await addNewUpvote(mappedContestData)
                 }
             } catch (error) {

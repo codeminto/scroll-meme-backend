@@ -34,7 +34,9 @@ const CreateContestEventListener = async () => {
             }
             const mappedContestData = mapEventData(event)
             try {
+                console.log("MAPPED_CONTEST ", mappedContestData)
                 const contest = await getContestByQuery({ contestId: mappedContestData?.contestId })
+                console.log('CONTEST: ', contest);
                 if (!contest) {
                     const frame = getFrameHtmlResponse({
                         buttons: [
