@@ -2,13 +2,16 @@
 const contestService = require("../services/contest.service");
 
 const getContests = async (req, res) => {
-    const { campaignAddress, ownerAddress } = req.query;
+    const { campaignAddress, ownerAddress, title } = req.query;
     const query = {};
     if (ownerAddress) {
         query.ownerAddress = { '$regex': ownerAddress, $options: 'i' }
     }
     if (campaignAddress) {
         query.campaignAddress = { '$regex': campaignAddress, $options: 'i' }
+    }
+    if (title) {
+        query.title = { '$regex': title, $options: 'i' }
     }
     const submissions = await contestService.getContests(query);
     res.send(submissions);
